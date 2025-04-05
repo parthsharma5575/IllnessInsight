@@ -110,7 +110,7 @@ const Home = () => {
 
         <Grid container spacing={{ xs: 2, md: 4 }} sx={{ px: { xs: 1, md: 0 } }}>
           {features.map((feature, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
+            <Grid item xs={12} sm={6} md={3} key={index} component="div">
               <Zoom in timeout={1000 + index * 200}>
                 <Card
                   sx={{
@@ -182,7 +182,7 @@ const Home = () => {
             Why Choose IllnessInsight?
           </Typography>
           <Grid container spacing={4} sx={{ mt: 2 }}>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} component="div">
               <Typography variant="h6" gutterBottom>
                 Accurate Predictions
               </Typography>
@@ -190,7 +190,7 @@ const Home = () => {
                 Our models are trained on extensive datasets and regularly updated for optimal accuracy.
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} component="div">
               <Typography variant="h6" gutterBottom>
                 Easy to Use
               </Typography>
@@ -198,7 +198,7 @@ const Home = () => {
                 Simple interface designed for users of all technical levels.
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} component="div">
               <Typography variant="h6" gutterBottom>
                 Instant Results
               </Typography>
