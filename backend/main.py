@@ -124,13 +124,9 @@ class PredictionResponse(BaseModel):
     message: str
 
 @app.get("/")
-async def root():
-    return {
-        "status": "healthy",
-        "message": "Welcome to IllnessInsight API",
-        "models_loaded": all([heart_model, diabetes_model, cancer_model]),
-        "chat_available": model is not None
-    }
+async def health_check():
+    """Health check endpoint for Railway deployment."""
+    return {"status": "healthy", "message": "IllnessInsight API is running"}
 
 @app.get("/health")
 async def health_check():
