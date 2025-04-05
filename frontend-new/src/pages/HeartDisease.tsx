@@ -64,11 +64,20 @@ const HeartDisease = () => {
       const apiData = Object.fromEntries(
         Object.entries(formData).map(([key, value]) => [key, value === '' ? 0 : value])
       );
+      console.log('Sending request to:', config.endpoints.heartDisease);
+      console.log('Request data:', apiData);
       const response = await axios.post<PredictionResponse>(config.endpoints.heartDisease, apiData);
+      console.log('Response received:', response.data);
       setPrediction(response.data);
     } catch (err) {
-      setError('Failed to get prediction. Please try again.');
-      console.error('Error:', err);
+      console.error('API Error:', err);
+      if (axios.isAxiosError(err)) {
+        console.error('Response data:', err.response?.data);
+        console.error('Response status:', err.response?.status);
+        setError(`Failed to get prediction: ${err.response?.data?.detail || err.message}`);
+      } else {
+        setError('Failed to get prediction. Please try again.');
+      }
     }
     setLoading(false);
   };
