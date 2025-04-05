@@ -43,7 +43,7 @@ if not GOOGLE_API_KEY:
 else:
     try:
         genai.configure(api_key=GOOGLE_API_KEY)
-        model = genai.GenerativeModel('gemini-pro')
+        model = genai.GenerativeModel('gemini-1.5-pro')
         logger.info("Successfully configured Gemini AI")
     except Exception as e:
         logger.error(f"Error configuring Gemini AI: {str(e)}")
@@ -185,7 +185,8 @@ async def predict_diabetes(input_data: DiabetesInput):
         # Handle probability calculation
         try:
             probability = diabetes_model.predict_proba([features])[0][1]
-        except:
+        except Exception as e:
+            logger.warning(f"Could not calculate probability for diabetes model: {str(e)}")
             # If predict_proba is not available, use a default probability
             probability = 0.5 if prediction == 1 else 0.0
         
@@ -228,12 +229,13 @@ async def predict_cancer(input_data: CancerInput):
         # Handle probability calculation
         try:
             probability = cancer_model.predict_proba([features])[0][1]
-        except:
+        except Exception as e:
+            logger.warning(f"Could not calculate probability for cancer model: {str(e)}")
             # If predict_proba is not available, use a default probability
             probability = 0.5 if prediction == 1 else 0.0
         
         # Generate message based on prediction
-        message = "High risk of breast cancer detected." if prediction == 1 else "Low risk of breast cancer detected."
+        message = "High risk of cancer detected." if prediction == 1 else "Low risk of cancer detected."
         
         logger.info(f"Cancer prediction made: {prediction} with probability {probability}")
         
