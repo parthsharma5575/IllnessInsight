@@ -30,14 +30,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Initialize models as None
+heart_model = None
+diabetes_model = None
+cancer_model = None
+model = None
+
 # Configure Gemini AI
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 if not GOOGLE_API_KEY:
     logger.warning("GOOGLE_API_KEY not set. Chat functionality will be disabled.")
-    model = None
 else:
-    genai.configure(api_key=GOOGLE_API_KEY)
-    model = genai.GenerativeModel('gemini-pro')
+    try:
+        genai.configure(api_key=GOOGLE_API_KEY)
+        model = genai.GenerativeModel('gemini-pro')
+        logger.info("Successfully configured Gemini AI")
+    except Exception as e:
+        logger.error(f"Error configuring Gemini AI: {str(e)}")
 
 # Load machine learning models
 try:
@@ -50,7 +59,8 @@ try:
     logger.info("Successfully loaded all ML models")
 except Exception as e:
     logger.error(f"Error loading ML models: {str(e)}")
-    raise
+    # Don't raise the exception, just log it
+    # This allows the app to start even if models fail to load
 
 # Pydantic models for input validation
 class HeartDiseaseInput(BaseModel):
@@ -128,6 +138,10 @@ async def health_check():
 
 @app.post("/predict/heart-disease", response_model=PredictionResponse)
 async def predict_heart_disease(input_data: HeartDiseaseInput):
+    if heart_model is None:
+        logger.error("Heart disease model not loaded")
+        raise HTTPException(status_code=503, detail="Heart disease model not available")
+    
     try:
         # Convert input data to list for model prediction
         features = [
@@ -157,6 +171,10 @@ async def predict_heart_disease(input_data: HeartDiseaseInput):
 
 @app.post("/predict/diabetes", response_model=PredictionResponse)
 async def predict_diabetes(input_data: DiabetesInput):
+    if diabetes_model is None:
+        logger.error("Diabetes model not loaded")
+        raise HTTPException(status_code=503, detail="Diabetes model not available")
+    
     try:
         # Convert input data to list for model prediction
         features = [
@@ -191,6 +209,10 @@ async def predict_diabetes(input_data: DiabetesInput):
 
 @app.post("/predict/cancer", response_model=PredictionResponse)
 async def predict_cancer(input_data: CancerInput):
+    if cancer_model is None:
+        logger.error("Cancer model not loaded")
+        raise HTTPException(status_code=503, detail="Cancer model not available")
+    
     try:
         # Convert input data to list for model prediction
         features = [
@@ -230,6 +252,10 @@ async def predict_cancer(input_data: CancerInput):
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat(input_data: ChatInput):
+    if model is None:
+        logger.error("Chat model not available")
+        raise HTTPException(status_code=503, detail="Chat functionality not available")
+    
     try:
         logger.info(f"Received chat message: {input_data.message}")
         
