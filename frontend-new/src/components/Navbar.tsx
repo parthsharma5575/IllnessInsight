@@ -9,7 +9,6 @@ import {
   Container,
   IconButton,
   Tooltip,
-  useTheme,
 } from '@mui/material';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
@@ -21,8 +20,6 @@ interface NavbarProps {
 }
 
 const Navbar = ({ toggleColorMode, mode }: NavbarProps) => {
-  const theme = useTheme();
-
   return (
     <AppBar position="static">
       <Container maxWidth="lg">
