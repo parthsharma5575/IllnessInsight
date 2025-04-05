@@ -152,7 +152,7 @@ const Cancer = () => {
       >
         <Box component="form" onSubmit={handleSubmit} noValidate>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Radius Mean"
@@ -163,7 +163,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Texture Mean"
@@ -174,7 +174,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Perimeter Mean"
@@ -185,7 +185,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Area Mean"
@@ -196,7 +196,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Smoothness Mean"
@@ -207,7 +207,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Compactness Mean"
@@ -218,7 +218,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Concavity Mean"
@@ -229,7 +229,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Concave Points Mean"
@@ -240,7 +240,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Symmetry Mean"
@@ -251,7 +251,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Fractal Dimension Mean"
@@ -262,7 +262,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Radius SE"
@@ -273,7 +273,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Texture SE"
@@ -284,7 +284,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Perimeter SE"
@@ -295,7 +295,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Area SE"
@@ -306,7 +306,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Smoothness SE"
@@ -317,7 +317,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Compactness SE"
@@ -328,7 +328,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Concavity SE"
@@ -339,7 +339,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Concave Points SE"
@@ -350,7 +350,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Symmetry SE"
@@ -361,7 +361,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Fractal Dimension SE"
@@ -372,7 +372,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Radius Worst"
@@ -383,7 +383,7 @@ const Cancer = () => {
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} component="div">
               <TextField
                 fullWidth
                 label="Texture Worst"
