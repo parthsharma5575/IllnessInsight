@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
+import config from '../config';
 
 interface CancerInput {
   radius_mean: number | '';
@@ -90,7 +91,7 @@ const Cancer = () => {
       const apiData = Object.fromEntries(
         Object.entries(formData).map(([key, value]) => [key, value === '' ? 0 : value])
       );
-      const response = await axios.post<PredictionResponse>('http://localhost:8000/predict/cancer', apiData);
+      const response = await axios.post<PredictionResponse>(config.endpoints.cancer, apiData);
       setPrediction(response.data);
     } catch (err) {
       setError('Failed to get prediction. Please try again.');

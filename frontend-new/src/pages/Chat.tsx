@@ -17,6 +17,7 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SendIcon from '@mui/icons-material/Send';
+import config from '../config';
 
 interface Message {
   text: string;
@@ -50,7 +51,7 @@ const Chat = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/chat', {
+      const response = await fetch(config.endpoints.chat, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
