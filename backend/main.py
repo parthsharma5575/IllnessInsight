@@ -31,9 +31,9 @@ app.add_middleware(
 )
 
 # Configure Gemini AI
-GOOGLE_API_KEY = "AIzaSyCZGGDVIyjebUyHX8m0xO6f1pBD6KKjErc"
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=GOOGLE_API_KEY)
-model = genai.GenerativeModel('gemini-2.0-flash')
+model = genai.GenerativeModel('gemini-pro')
 
 # Load machine learning models
 try:
