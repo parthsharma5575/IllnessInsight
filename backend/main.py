@@ -43,7 +43,7 @@ if not GOOGLE_API_KEY:
 else:
     try:
         genai.configure(api_key=GOOGLE_API_KEY)
-        model = genai.GenerativeModel('gemini-1.5-pro')
+        model = genai.GenerativeModel('gemini-pro')
         logger.info("Successfully configured Gemini AI")
     except Exception as e:
         logger.error(f"Error configuring Gemini AI: {str(e)}")
@@ -54,8 +54,14 @@ try:
         heart_model = pickle.load(f)
     with open('models/diabetes_model.sav', 'rb') as f:
         diabetes_model = pickle.load(f)
+        # Set probability=True for diabetes model if it's an SVC model
+        if hasattr(diabetes_model, 'probability') and not diabetes_model.probability:
+            diabetes_model.probability = True
     with open('models/cancer_model.sav', 'rb') as f:
         cancer_model = pickle.load(f)
+        # Set probability=True for cancer model if it's an SVC model
+        if hasattr(cancer_model, 'probability') and not cancer_model.probability:
+            cancer_model.probability = True
     logger.info("Successfully loaded all ML models")
 except Exception as e:
     logger.error(f"Error loading ML models: {str(e)}")
@@ -268,7 +274,8 @@ async def chat(input_data: ChatInput):
         return ChatResponse(response=response.text)
     except Exception as e:
         logger.error(f"Error in chat: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        # Return a more user-friendly error message
+        return ChatResponse(response="I'm sorry, I encountered an error processing your request. Please try again later.")
 
 if __name__ == "__main__":
     import uvicorn
