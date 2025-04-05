@@ -32,8 +32,12 @@ app.add_middleware(
 
 # Configure Gemini AI
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-genai.configure(api_key=GOOGLE_API_KEY)
-model = genai.GenerativeModel('gemini-pro')
+if not GOOGLE_API_KEY:
+    logger.warning("GOOGLE_API_KEY not set. Chat functionality will be disabled.")
+    model = None
+else:
+    genai.configure(api_key=GOOGLE_API_KEY)
+    model = genai.GenerativeModel('gemini-pro')
 
 # Load machine learning models
 try:
@@ -111,7 +115,12 @@ class PredictionResponse(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to IllnessInsight API"}
+    return {
+        "status": "healthy",
+        "message": "Welcome to IllnessInsight API",
+        "models_loaded": all([heart_model, diabetes_model, cancer_model]),
+        "chat_available": model is not None
+    }
 
 @app.get("/health")
 async def health_check():
